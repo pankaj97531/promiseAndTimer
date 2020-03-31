@@ -8,19 +8,23 @@ var intervalID = 0;
  */
 var wait=ms=>{
 	return new Promise(function(res,rej){
-		 setTimeout(res, ms)
+		 setTimeout(res("bbbbbbb"), ms)
 	})
 } 
 var repeat = function repeat(ms, func) {
   return new Promise(function (res, rej) {
-    return intervalID = setInterval(func, ms), wait(ms).then(res);
+    return intervalID = setInterval(func, ms), wait(ms).then(res=>{
+		console.log(res);
+	//	return res;
+	});
   });
 };
 
 var myfunction = function myfunction() {
   return new Promise(function (r) {
-    return r(console.log('repeating...'));
+    return r(console.log('repeating...',new Date()));
   });
+  console.log("hhhhhhhhh");
 };
 
 var stopAfter5Secs = function stopAfter5Secs() {
@@ -32,6 +36,6 @@ var stopAfter5Secs = function stopAfter5Secs() {
   });
 };
 
-repeat(1000, () => Promise.all([myfunction()])) // 1000 miliseconds = 1 second
+repeat(1000,()=>Promise.all([myfunction()]) ) // 1000 miliseconds = 1 second
 .then(stopAfter5Secs())  // starts timer to end repetitions
 .then(console.log('repeat start'));
