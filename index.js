@@ -1,3 +1,4 @@
+//https://stackoverflow.com/questions/42352146/understanding-javascript-promise-used-with-settimeout-and-setinterval
 var intervalID = 0;
 
 /* var wait = 
